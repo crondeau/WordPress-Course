@@ -1,0 +1,343 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>WordPress Lesson 4: Advanced Techniques</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>WordPress</h1>
+					<h2>"Advanced" Custom Themes</h2>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+					<h1>Post Thumbnails</h1>
+				</section>
+
+				<section>
+					<h2>Post Thumbnail</h2>
+					<p>Custom fields were used to display featured images, but WordPress version 2.9 introduced <a href="http://codex.wordpress.org/Post_Thumbnails">Post Thumbnails</a> and made this process redundant. <code>The post-thumbnail()</code> function is the method of choice for displaying featured images.</p>
+
+<pre><code>
+	add_theme_support( 'post-thumbnails' );
+	
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Using Post Thumbnails</h2>
+					<p>Once you've declared theme support for this feature, a new "Featured Image" area will appear in the bottom right hand side of your post and page admin UI.</p>
+
+					<p>To add a featured image, simply click the link, add a new image like you would any other image and select "Use as featured image" instead of insert into post.</p>
+				</section>
+				
+				<section>
+					<h2>Displaying Post Thumbnails</h2>
+
+					<p>Once added to your post or page, you can display it by adding the following code within the loop.</p>
+
+<pre><code>
+	&lt;?php the_post_thumbnail(); ?&gt;
+	
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Post Thumbnails Sizes</h2>
+
+					<p>The size of your thumbnails is set in<br> Settings > Media.</p>
+<pre><code>
+the_post_thumbnail( 'thumbnail' );     // default 150px x 150px
+the_post_thumbnail( 'medium' );        // default 300px x 300px
+the_post_thumbnail( 'large' );         // default 640px x 640px
+the_post_thumbnail( 'full' );          // original size uploaded
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Additional Sizes</h2>
+
+					<p>You may want to add more sizes to suit your design.</p>
+
+<pre><code>
+	add_image_size( 'single-post-thumbnail', 350, 9999 );
+	add_image_size( 'homepage-thumb', 220, 180, true ); 
+	
+</code></pre>
+					<p>You can then use these new sizes like so:</p>
+<pre><code>
+&lt;?php 
+	the_post_thumbnail( 'single-post-thumbnail' ); 
+	
+?&gt;</code></pre>
+				</section>
+				
+				<section>
+					<h1>Exercise</h1>
+					<ol>
+						<li>Insert featured images in your blog posts.</li>
+						<li>Update your index.php, archives.php and single.php templates.</li>
+						<li>Style the outputted html to match the design in the PSD.</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h1>Custom Templates</h1>
+				</section>
+				
+				
+				<section>
+					<h2>Custom Templates</h2>
+
+					<p>Custom templates can be created by adding a comment at the top of a new file.</p>
+
+<pre><code>
+&lt;?php	
+	/* Template Name: Full Width Page */
+?&gt;
+	
+</code></pre>
+
+	<p>Example:
+
+					<ol>
+						<li>Make a duplicate of page.php</li>
+						<li>Save this new file as full-wdith.php</li>
+						<li>Insert the above comment at the top</li>
+						<li>Alter the template as needed</li>
+					</ol>
+
+					
+					
+				</section>
+				<section>
+					<h2>Using Custom Templates</h2>
+					<p>Once you've created your custom template and saved it, you will notice a dropdown in your page admin.</p>
+					<p style="text-align:center"><img src="http://www.bluelimemedia.com/wp/wp-content/uploads/2011/06/Custom-Template.png" width="274" height="159" /></p>
+
+					<p>This dropdown allows you to select this template for whatever page you choose.</p>
+				</section>
+				
+				<section>
+					<h2>Home Page</h2>
+					<p>To achieve a unique look for your homepage,<br> you can create a file called front-page.php.</p> 
+					</p>
+
+					<p>The comment at the top is <strong>NOT</strong> needed.</p>
+				</section>
+				
+				<section>
+					<h2>Unique page and category display</h2>
+					<p>You may also want to create unique layouts for either single pages or categories.</p>
+					<ul><code>
+						<li>page-id.php</li>
+						<li>single-id.php</li> 
+						<li>category-id.php</li>
+						<li>...</li>		
+					</code></ul>
+					<p>WordPress offers a huge selection of templates and these follow <a href="http://codex.wordpress.org/Template_Hierarchy#The_Template_Hierarchy_In_Detail">a specific hierarchy</a>.</p>
+				</section>
+				
+				<section>
+					<h1>The Loop</h1>
+				</section>
+				<section>
+					<h2>Default Loop</h2>
+					<p>This loop uses the <em>the default query</em> to loop through post content, making it the loop used 99% of the time.</p>
+<pre><code>
+ &lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
+  &lt;div &lt;?php post_class(); ?> id="post-&lt;?php the_ID(); ?&gt;"&gt;
+	&lt;h1&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h1&gt;
+	&lt;?php the_content(); ?&gt;	
+  &lt;/div&gt;
+ &lt;?php endwhile; ?&gt;
+
+</code></pre>
+				</section>
+				
+				<section>
+					<h2>WP_Query()</h2>
+					
+					<p><a href="http://codex.wordpress.org/Function_Reference/WP_Query">WP Query</a> offers you complete control over the customization of any number of loop.</p>
+
+					<p>The following loop will exclude a category.</p>
+
+<pre><code>
+ &lt;?php $custom_query = new WP_Query('cat=-9'); 
+  while($custom_query-&gt;have_posts()) : $custom_query-&gt;the_post(); ?&gt; 
+   &lt;div &lt;?php post_class(); ?&gt; id="post-&lt;?php the_ID(); ?&gt;"&gt; 
+    &lt;h1&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;
+    &lt;/a&gt;&lt;/h1&gt; 
+    &lt;?php the_content(); ?&gt; 
+   &lt;/div&gt; 
+  &lt;?php endwhile; ?&gt; 
+ &lt;?php wp_reset_postdata(); // reset the query ?&gt;
+
+</code></pre>
+				</section>
+				<section>
+					<h2>Use WP_Query to display page content</h2>
+					<p>If you want to display more than one content area on a page, <code>WP_Query()</code> is very useful.</p>
+<pre><code>
+&lt;?php
+  $new_query_1 = new WP_Query();
+  $new_query_1->query(array('page_id' => 2));
+   while ($new_query_1->have_posts()) : $new_query_1->the_post();
+    the_content();
+   endwhile;
+  wp_reset_query(); 
+?&gt;	
+</code></pre>		
+
+				</section>
+				
+				<section>
+					<h2>Get Post</h2>
+					<p>The easiest, safest way to create multiple loops in your theme is to use <code>get_posts()</code>.</p>
+					
+<pre><code>
+&lt;?php
+$news = get_posts( array('numberposts' => 3, 'category' => 1) );
+ if ( $news ) {
+  foreach( (array) $news as $post ) {
+    setup_postdata( $post ); ?&gt;
+   &lt;p&gt;&lt;a href="&lt;?php bloginfo('url'); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/p&gt;
+ &lt;?php }
+ }
+wp_reset_postdata();
+?&gt;
+
+</code></pre>
+					
+				</section>	
+				
+				
+				<section>
+					<h2>Query_post</h2>
+					<p>Many tutorials will tell you that it's ok to use <code>query_post()</code> but please <strong><a href="http://developer.wordpress.com/2012/05/14/querying-posts-without-query_posts/">DON'T</a></strong>.</p>
+					
+				</section>
+				
+				<section>
+					<h1>Exercise</h1>
+
+				<ul>
+					<li>Set up your front-page.php</li>
+					<li>Using the PSD as your guide, set up the different boxes areas using CSS</li>
+					<li>Display the required content in each box as per the PSD.</li>
+				</ul>
+
+				</section>
+				
+				<section>
+					<h1>WP Loop Resources</h1>
+					<ul>
+						<li><a href="http://wp.tutsplus.com/tutorials/theme-development/a-beginners-guide-to-the-wordpress-loop/">Beginner’s Guide to the WordPress Loop</a></li>
+						<li><a href="http://digwp.com/2011/05/loops/">4 Ways to Loop with WordPress</a></li>
+						<li><a href="https://gist.github.com/2023628">Comprehensive Reference</a></li>
+					</ul>
+				</section>
+				
+				
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			// Scripts that should be loaded before initializing
+			var scripts = [];
+
+			// If the browser doesn't support classList, load a polyfill
+			if( !document.body.classList ) {
+				scripts.push( 'lib/js/classList.js' );
+			}
+
+			// Load markdown parser if there are slides defined using markdown
+			if( document.querySelector( '[data-markdown]' ) ) {
+				scripts.push( 'lib/js/showdown.js' );
+				scripts.push( 'lib/js/data-markdown.js' );
+			}
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				scripts.push( 'socket.io/socket.io.js' );
+				scripts.push( 'plugin/speakernotes/client.js' );
+			}
+
+			scripts.push( 'js/reveal.js' );
+
+			// Load the scripts and, when completed, initialize reveal.js
+			head.js.apply( null, scripts.concat([function() {
+
+				// Fires when a slide with data-state=customevent is activated
+				Reveal.addEventListener( 'customevent', function() {
+					console.log( '"customevent" has fired' );
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					
+					theme: Reveal.getQueryHash().theme || 'beige', // default/neon/beige
+					transition: Reveal.getQueryHash().transition || 'linear(2d)' // default/cube/page/concave/linear(2d)
+				});
+
+			}]));
+			
+			// Load highlight.js for syntax highlighting of code samples
+			head.js( 'lib/js/highlight.js', function() { 
+				hljs.initHighlightingOnLoad(); 
+			} );
+		</script>
+
+	</body>
+</html>

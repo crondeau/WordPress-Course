@@ -1,0 +1,207 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>WordPress Resources</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>WordPress</h1>
+					<h2>Resources, Guides, Tutorials</h2>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+					<h2>WordPress.Org</h2>
+					<ul>
+						<li><a href="http://codex.wordpress.org/">Codex</a></li>
+						<li><a href="http://wordpress.org/support/">Forum</a></li>
+						<li><a href="http://wordpress.org/extend/plugins/">Plugins</a></li>
+						<li><a href="http://wordpress.org/extend/themes/">Themes</a></li>
+					</ul>
+					
+				</section>
+				
+				<section>
+					<h2>Code Poet</h2>
+					<ul>
+						<li><a href="http://build.codepoet.com/asset/books/">Books</a></li>
+						<li><a href="http://build.codepoet.com/asset/interviews/">Interviews</a></li>
+						<li><a href="http://build.codepoet.com/quiz/">Quizz</a></li>
+						<li><a href="http://build.codepoet.com/asset/resources/">Resources</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Help Forums</h2>
+					<ul>
+						<li><a href="http://wordpress.stackexchange.com/">WP Stack Exchange</a></li>
+						<li><a href="http://wpquestions.com/">WP Questions</a></li>
+						<li><a href="http://stackoverflow.com/questions/tagged/wordpress">Stack Overflow</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Blogs</h2>
+					<ul>
+						<li><a href="http://www.wpbeginner.com/">WP Beginner</a></li>
+						<li><a href="http://wpcandy.com/">WP Candy</a></li>
+						<li><a href="http://wprealm.com/">WP Realm</a></li>
+						<li><a href="http://wpmu.org/">WPMU</a></li>
+						<li><a href="http://www.smashingmagazine.com/category/wordpress/">Smashing Magazine</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Tutorials</h2>
+					<ul>
+					<li><a href="http://digwp.com/">Digging into WordPress</a></li>
+					<li><a href="http://wp.tutsplus.com/">WP Tuts</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Newsletters</h2>
+					<ul>
+						<li><a href="http://www.dailydocumentation.com/wordpress/">Daily WordPress Reference</a></li>
+						<li><a href="http://wpmail.me/">WP Mail.me</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Plugins</h2>
+					<ul>
+						<li><a href="http://wpnuggets.com/">WP nuggets</a></li>
+						<li><a href="http://yoast.com/wp-plugin-review/">Yoast Plugin Review</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Snippets</h2>
+					<ul>
+						<li><a href="http://wp-snippets.com/">WP Snippets</a></li>
+						<li><a href="http://perishablepress.com/code-snippets/">Perishable Press</a></li>
+						<li><a href="http://icodesnip.com/search?q=WordPress">Code Snippet Collection</a></li>
+						<li><a href="http://wordpress.mfields.org/category/code-snippets/">Michael Fields</a></li>
+						<li><a hrf="http://www.bluelimemedia.com/tag/code-snippets/">Bluelime Media</a></li>
+					</ul>
+					
+				</section>
+				<section>
+					<h2>Other</h2>
+					<ul>
+						<li><a href="http://wordpress.tv/">WordPress.tv</a></li>
+						<li><a href="http://central.wordcamp.org/">WordCamp</a></li>
+						<li><a href="http://wordpress.meetup.com/">WordPress Meetups</a></li>
+						<li><a href="http://www.studentguidewebdesign.com/">Student's Guide to Web Design</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Obviously...</h2>
+					<ul>
+						<li>Google</li>
+						<li>Twitter</li>
+					</ul>
+				</section>
+
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			// Scripts that should be loaded before initializing
+			var scripts = [];
+
+			// If the browser doesn't support classList, load a polyfill
+			if( !document.body.classList ) {
+				scripts.push( 'lib/js/classList.js' );
+			}
+
+			// Load markdown parser if there are slides defined using markdown
+			if( document.querySelector( '[data-markdown]' ) ) {
+				scripts.push( 'lib/js/showdown.js' );
+				scripts.push( 'lib/js/data-markdown.js' );
+			}
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				scripts.push( 'socket.io/socket.io.js' );
+				scripts.push( 'plugin/speakernotes/client.js' );
+			}
+
+			scripts.push( 'js/reveal.js' );
+
+			// Load the scripts and, when completed, initialize reveal.js
+			head.js.apply( null, scripts.concat([function() {
+
+				// Fires when a slide with data-state=customevent is activated
+				Reveal.addEventListener( 'customevent', function() {
+					console.log( '"customevent" has fired' );
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					
+					theme: Reveal.getQueryHash().theme || 'beige', // default/neon/beige
+					transition: Reveal.getQueryHash().transition || 'linear(2d)' // default/cube/page/concave/linear(2d)
+				});
+
+			}]));
+			
+			// Load highlight.js for syntax highlighting of code samples
+			head.js( 'lib/js/highlight.js', function() { 
+				hljs.initHighlightingOnLoad(); 
+			} );
+		</script>
+
+	</body>
+</html>

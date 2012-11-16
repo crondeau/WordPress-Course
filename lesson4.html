@@ -1,0 +1,243 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>WordPress Lesson 4: Advanced Techniques</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>WordPress</h1>
+					<h2>"Advanced" Custom Themes</h2>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				<section>
+					<h2>Advanced Techniques</h2>
+					<p>Unique design and layouts can be achieved using WordPress features such as:</p>
+						<ol>
+							<li>The body_class() function</li>
+							<li>Custom fields</li>
+							<li>Post thumbnails (feature images)</li>
+							<li>Custom templates</li>
+							<li>Mastering the loop</li>
+							<li>Hooks and filters</li>	
+						</ol>
+				</section>
+				
+				<section>
+					<h1>Body Class</h1>
+				</section>
+				
+				<section>
+					<h2>Body class</h2>
+					<p>In your header.php you will have noticed the following code snippet.</p>
+
+<pre><code>
+  &lt;body &lt?php body_class(); ?&gt;&gt;
+	
+</code></pre>
+
+					<p>This function will generate html similar to this:</p>
+
+<pre><code>
+  &lt;body class="page page-id-10 page-child parent-pageid-8 
+  page-template page-template-default"&gt;
+	
+</code></pre>
+					<p>This built-in WordPress function adds a number of classes to your body tag which can be used to enhance your theme design.</p>
+
+				</section>
+				
+				<section>
+					<h2>Examples</h2> 
+
+			<p>Display different banners:</p>
+
+<pre><code>
+  .page-id-4 #header {background:#FFF url(images/about.jpg);}
+  .page-id-2 #header {background:#FFF url(images/contact.jpg);}
+
+</code></pre>
+			<p>Apply different widths:</p>
+<pre><code>
+  .blog #content {width: 600px;}
+  .page #content {width: 750px;}
+
+</code></pre>
+				</section>
+				
+				<section>
+
+				<h1>Exercise</h1> 
+				<ol>
+					<li>Continuing with your custom theme, have a look at the various classes generated and apply a few different styles.</li>
+				</ol>
+
+				</section>
+
+				<section>
+					<h1>Custom Fields</h1>
+				</section>
+				
+				<section>
+					<h2>Custom Fields</h2>
+					<p>Historically, <a href="http://codex.wordpress.org/Custom_Fields">custom fields</a> have been around the longest. These are useful in some very simple instances.</p>
+					<p>Each custom field is extra information known as meta-data and is composed of a key and a value.</p>
+
+<pre><code>
+&lt;?php 
+	$meta_values = get_post_meta($post_id, $key, $single); 
+?&gt;
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Example</h2>
+
+<pre><code>
+&lt;?php 
+   $quotation = get_post_meta($post->ID, 'quote', true);
+	if ($quotation) { 
+		echo $quotation; 
+	} else { 
+		echo 'You forgot to insert a quote...';
+	} 
+?&gt;
+	
+</code></pre>
+				</section>
+
+				<section>
+					<h1>Exercise</h1>
+					<ol>
+						<li>Insert custom fields on your pages.</li>
+						<li>Update your page.php template.</li>
+						<li>Style the outputted html to match the design in the PSD.</li>
+					</ol>
+				</section>
+
+				<section>
+					<h1>Body Class Resources</h1>
+						<ul>
+							<li><a href="http://www.nathanrice.net/blog/wordpress-2-8-and-the-body_class-function/">Nathan Rice discusses the body class</a></li>
+							<li><a href="http://wpmu.org/how-to-use-the-body-class-tag-to-apply-custom-styles-to-wordpress-pages/">How to Use the Body Class Tag...</a></li>
+						</ul>
+				</section>
+				
+				<section>
+					<h1>Custom Field Resources</h1>
+					<ul>
+					<li><a href="http://codex.wordpress.org/Custom_Fields">Codex: Custom fields</a></li>
+					<li><a href="http://perishablepress.com/press/2008/12/17/wordpress-custom-fields-tutorial/">Using WordPress Custom Fields</a></li>
+					<li><a href="http://coding.smashingmagazine.com/2010/04/29/extend-wordpress-with-custom-fields/">Extend WordPress with Custom Fields</a></li>
+					<li><a href="http://www.wpbeginner.com/wp-tutorials/wordpress-custom-fields-101-tips-tricks-and-hacks/">Custom Fields tips and tricks</a></li>
+					<li><a href="http://sixrevisions.com/wordpress/custom-fields-search/">Enhancing WordPress Custom Fields</a></li>
+					</ul>
+				</section>
+				
+				
+				<section>
+					<h1>Questions</h1>
+					<p>No? <a href="lesson5.html">Let's continue</a></p>
+				</section>
+				
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			// Scripts that should be loaded before initializing
+			var scripts = [];
+
+			// If the browser doesn't support classList, load a polyfill
+			if( !document.body.classList ) {
+				scripts.push( 'lib/js/classList.js' );
+			}
+
+			// Load markdown parser if there are slides defined using markdown
+			if( document.querySelector( '[data-markdown]' ) ) {
+				scripts.push( 'lib/js/showdown.js' );
+				scripts.push( 'lib/js/data-markdown.js' );
+			}
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				scripts.push( 'socket.io/socket.io.js' );
+				scripts.push( 'plugin/speakernotes/client.js' );
+			}
+
+			scripts.push( 'js/reveal.js' );
+
+			// Load the scripts and, when completed, initialize reveal.js
+			head.js.apply( null, scripts.concat([function() {
+
+				// Fires when a slide with data-state=customevent is activated
+				Reveal.addEventListener( 'customevent', function() {
+					console.log( '"customevent" has fired' );
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					
+					theme: Reveal.getQueryHash().theme || 'beige', // default/neon/beige
+					transition: Reveal.getQueryHash().transition || 'linear(2d)' // default/cube/page/concave/linear(2d)
+				});
+
+			}]));
+			
+			// Load highlight.js for syntax highlighting of code samples
+			head.js( 'lib/js/highlight.js', function() { 
+				hljs.initHighlightingOnLoad(); 
+			} );
+		</script>
+
+	</body>
+</html>

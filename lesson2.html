@@ -1,0 +1,292 @@
+<!doctype html>  
+<html lang="en">
+	
+	<head>
+		<meta charset="utf-8">
+		
+		<title>WordPress Lesson 2: Themes, Templates and Child Themes</title>
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+		
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+		
+		<link rel="stylesheet" href="css/reset.css">
+		<link rel="stylesheet" href="css/main.css">
+		<link rel="stylesheet" href="css/print.css" type="text/css" media="print">
+
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+	</head>
+	
+	<body>
+		
+		<div class="reveal">
+
+			<!-- Used to fade in a background when a specific slide state is reached -->
+			<div class="state-background"></div>
+			
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>WordPress</h1>
+					<h2>Themes and Templates</h2>
+					<script>
+						// Delicously hacky. Look away.
+						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
+					</script>
+				</section>
+				
+				<section>
+						<h2>Options?</h2>
+						<p>There are several ways to build a WordPress site. The right way for you will depend on your skill set and what your client needs.</p>
+
+					<ul>
+						<li>No budget: Free/Premium theme</li>
+						<li>Small budget: Premium/Child theme</li>
+						<li>Decent budget- Custom theme</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Free Themes</h2>
+
+					<p>It's best to stick to the <a href="http://wordpress.org/extend/themes/">WordPress theme repository</a>.</p>
+					<p>Smashing Magazine also is a great resources for new themes.</p>
+					<p>Avoid doing <a href="http://wpmu.org/why-you-should-never-search-for-free-wordpress-themes-in-google-or-anywhere-else/">random searches on Google</a>.
+				</section>
+
+				<section>
+					<h2>"Premium" Themes</h2>
+					<p><strike>Premium</strike> Commercial themes are inexpensive, but should only be used if you simply want to tweak a colour or two. You should also look into what type of support is available.</p>
+
+					<p>Commercial theme options:</p>
+					<ul>
+						<li><a href="http://headwaythemes.com/">Headway Themes</a></li>			
+						<li><a href="http://www.studiopress.com/">Studio Press</a></li>
+						<li><a href="http://thethemefoundry.com/">Theme Foundry</a></li>
+						<li><a href="http://www.woothemes.com/">Woo Themes</a></li>
+					</ul>
+					
+				</section>
+
+				<section>
+					<h2>Parent and Child Themes</h2>
+					<p>A child theme inherits the functionality of the parent theme and allows you to modify, or add to it.<br><strong>They allow you to code faster.</strong></p> 
+					<p>Any theme can be used, but these are good parent theme options:</p>
+
+					<ul>
+						
+						<li><a href="http://wordpress.org/extend/themes/hybrid">Hybrid</a></li>
+						<li><a href="http://wordpress.org/extend/themes/responsive">Responsive</a></li>
+						<li><a href="http://wordpress.org/extend/themes/thematic">Thematic</a></li>
+						<li><a href="http://wordpress.org/extend/themes/twentyten">Twenty Twelve</a></li>
+						<li><a href="http://www.studiopress.com/themes/genesis">Genesis</a></li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Custom Themes</h2>
+					<p>Custom builds are the perfect choice if you want full control. This does not mean you are starting from scratch. It's best to use a starter theme and most developers have their favourite.</p>
+					<ul>
+						<li>I've built over 200+ WordPress sites with my <a href="http://www.bluelimemedia.com/wordpress/">Basic starter theme</a>.</li>
+						<li>Chris Coyier uses a <a href="http://digwp.com/2010/02/blank-wordpress-theme/">Blank</a> theme.</li>
+						<li><a href="http://starkerstheme.com/">Starkers</a> is a good option for an HTML5 version.</li>
+						<li><a href="http://themefortress.com/reverie/">Reverie is a great HTML5 framework</a>.</li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>WordPress Templates</h2>
+					<p>A WordPress theme is a collection of template files that work together to produce a website.</p>
+					<img src="lib/img/structure.gif" width="500" height="400" alt="Structure">
+				</section>
+
+				<section>
+					<h2>Main Files</h2>
+					<p>Some templates (e.g. the header and footer) are used on <strong>ALL</strong> pages, while others are used only under specific conditions. </p>
+					<p>A theme usually has the following:</p>
+					<table style="width:100%">
+						<tr>
+							<td style="width:50%">
+								<ul>
+									<li>style.css</li>
+									<li>index.php</li>
+									<li>page.php</li>
+									<li>sidebar.php</li>
+								</ul>
+							</td>
+							<td style="width:50%">
+								<ul>
+									<li>comments.php</li>
+									<li>single.php</li>
+									<li>archive.php</li>
+									<li>404.php</li>
+								</ul>	
+							</td>
+						</tr>
+					</table>
+				</section>
+
+				<section>
+					<h2>Additional Files</h2>
+					<table style="width:100%; margin-bottom:50px;">
+						<tr>
+							<td style="width:50%">
+								<ul>
+								<li>search.php</li>
+								<li>front-page.php</li>
+								<li>author.php</li>
+								<li>category.php</li>
+							</ul>
+							</td>
+							<td style="width:50%">
+								<ul>
+								<li>taxonomy.php</li>
+								<li>attachment.php</li>
+								<li>content-page.php</li>
+								<li>sidebar-page.php</li>
+							</ul>
+							</td>
+						</tr>
+					</table>
+					<p>For a visual guide, <a href="http://yoast.com/wordpress-theme-anatomy/">see this infographic</a>.</p>
+				</section>
+
+				<section>
+					<h1>Exercise</h1>
+					<p>Download a copy of the <a href="http://wordpress.org/extend/themes/twentytwelve">Twenty Twelve</a><br> and let's look at the template files</p>
+				</section>
+				<section>
+					<h1>Making a Child Theme</h1>
+					<p>It's super easy and all you need to know is CSS.</p>
+					<p>How to use <a href="http://getfirebug.com">Firebug</a>, helps too!</p>
+				</section>
+				
+				<section>
+					<h2>Steps required</h2>
+					<ol>
+						<li>Create new folder with the child theme name</li>
+						<li>Set up your style.css</li>
+						<li>Upload your child theme and activate it</li>
+					</ol>
+				</section>
+				
+				
+				
+				<section>
+					<h2>Child theme CSS</h2>
+					<p>A child theme extends the parent theme and<br> <strong>MUST</strong> contain a style.css with the following<br> comment at the very top:</p>
+					<pre><code>
+/*
+Theme Name: The Name of your theme
+Theme URI: http://www.yourdomainname.com/
+Description: Your theme description goes here
+Author: Your name
+Author URI: http://www.yourdomainname.com
+Template: The parent folder name
+Version: 0.1
+*/
+
+@import url("../parent-folder-name/style.css");
+
+</code></pre>
+					
+				</section>				
+
+				<section>
+					<h2>Exercise</h2>
+					<ol>
+						<li>Let's make a child theme</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h1>Child Theme Resources</h1>
+					<ul>
+						<li><a href="http://codex.wordpress.org/Child_Themes" target="_blank">Codex: Child Themes</a></li>
+						<li><a href="http://aaron.jorb.in/blog/2010/04/introducing-thirty-ten/#TZ4sO-SL-JE" target="_blank">Introducing Thirty Ten</a></li>
+						<li><a href="http://wpmu.org/12-free-twentyten-child-themes-for-wordpress/" target="_blank">12 TwentyTen child themes</a></li>
+						<li><a href="http://wpmu.org/customizing-your-wordpress-theme-using-firebug"  target="_blank">Customizing Your WordPress Theme Using Firebug</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h1>Questions</h1>
+					<p>No? <a href="lesson3.html">Ready for more?</a></p>
+				</section>
+	
+			</div>
+
+			<!-- The navigational controls UI -->
+			<aside class="controls">
+				<a class="left" href="#">&#x25C4;</a>
+				<a class="right" href="#">&#x25BA;</a>
+				<a class="up" href="#">&#x25B2;</a>
+				<a class="down" href="#">&#x25BC;</a>
+			</aside>
+
+			<!-- Presentation progress bar -->
+			<div class="progress"><span></span></div>
+			
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+
+		<script>
+			// Scripts that should be loaded before initializing
+			var scripts = [];
+
+			// If the browser doesn't support classList, load a polyfill
+			if( !document.body.classList ) {
+				scripts.push( 'lib/js/classList.js' );
+			}
+
+			// Load markdown parser if there are slides defined using markdown
+			if( document.querySelector( '[data-markdown]' ) ) {
+				scripts.push( 'lib/js/showdown.js' );
+				scripts.push( 'lib/js/data-markdown.js' );
+			}
+
+			// If we're runnning the notes server we need to include some additional JS
+			// TODO Is there a better way to determine if we're running the notes server?
+			if( window.location.host === 'localhost:1947' ) {
+				scripts.push( 'socket.io/socket.io.js' );
+				scripts.push( 'plugin/speakernotes/client.js' );
+			}
+
+			scripts.push( 'js/reveal.js' );
+
+			// Load the scripts and, when completed, initialize reveal.js
+			head.js.apply( null, scripts.concat([function() {
+
+				// Fires when a slide with data-state=customevent is activated
+				Reveal.addEventListener( 'customevent', function() {
+					console.log( '"customevent" has fired' );
+				} );
+
+				// Fires each time a new slide is activated
+				Reveal.addEventListener( 'slidechanged', function( event ) {
+					// event.previousSlide, event.currentSlide, event.indexh, event.indexv
+				} );
+
+				// Full list of configuration options available here:
+				// https://github.com/hakimel/reveal.js#configuration
+				Reveal.initialize({
+					controls: true,
+					progress: true,
+					history: true,
+					
+					theme: Reveal.getQueryHash().theme || 'beige', // default/neon/beige
+					transition: Reveal.getQueryHash().transition || 'linear(2d)' // default/cube/page/concave/linear(2d)
+				});
+
+			}]));
+			
+			// Load highlight.js for syntax highlighting of code samples
+			head.js( 'lib/js/highlight.js', function() { 
+				hljs.initHighlightingOnLoad(); 
+			} );
+		</script>
+
+	</body>
+</html>
