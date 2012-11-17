@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>WordPress 101</title>
+		<title>WordPress Lesson 6: Custom Post Types</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -28,85 +28,116 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>WordPress 101</h1>
-					<h2>WordPress as a CMS</h2>
-					<p>Website: <a href="http://www.bluelimemedia.com">Bluelime Media</a></p>
-					<p>Class notes &amp; tutorials: <a href="http://wpyogi.com">WP yogi</a></p>
-					<p><a href="https://twitter.com/bluelimemedia">@bluelimemedia</a></p>
-					<p><a href="https://github.com/crondeau">github</a></p>
+					<h1>Custom Posts Type</h1>
+					<h2>More CMS Goodness</h2>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
 					</script>
 				</section>
-				
-				<section>
-					<h1>Lesson 1</h1>
-					<h2>Introduction to WordPress</h2>
-					<ul>
-						<li>What is WordPress</li>
-						<li>WordPress.com vs .org</li>
-						<li>Advantages/disadvantages of WordPress</li>
-						<li>Installing WordPress</li>
-						<li>The WordPress dashboard</li>
-					</ul>
-				</section>
 
 				<section>
-					<h1>Lesson 2</h1>
-					<h2>Themes, Templates &amp; Child Themes</h2>
+					<h2>WordPress Content Types</h2>
+					<p>WordPress comes with the following default types:</p>
 					<ul>
-						<li>WordPress developer theming options</li>
-						<li>Overview of WordPress themes</li>
-						<li>In Depth look at TwentyTwelve</li>
-						<li>Child Theme</li>
+						<li>Post</li>
+						<li>Page</li>
+						<li>Attachment</li>
+						<li>Revisions</li>
+						<li>Nav Menus</li>
 					</ul>
-				</section>
 
-				<section>
-					<h1>Lesson 3</h1>
-					<h2>Custom Themes</h1>
-					<ul>
-						<li>What's a theme?</li>
-						<li>What's a template?</li>
-						<li>Choosing the right starting base for you theme</li>
-						<li>Templates needed</li>
-						<li>Step by step theming</li>
-					</ul>
-				</section>
-
-				<section>
-					<h1>Lesson 4</h1>
-					<h2>Custom Themes, ctn...</h1>
-					<ul>
-						<li>The body_class() function</li>
-						<li>Custom fields</li>
-					</ul>
+					<p>But you can also define your own Custom Types.</p>	
+					
 				</section>
 				
 				<section>
-					<h1>Lesson 5</h1>
-					<h2>Custom Themes, ctn...</h1>
-					<ul>
-						<li>Post thumbnails (feature images)</li>
-						<li>Page, category, custom templates</li>
-						<li>Mastering the loop</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>Lesson 6</h1>
-					<h2>Custom Post Types</h1>
-					<ul>
-						<li>Set up CPTs</li>
-					</ul>
-				</section>
-				
-				<section>
-					<h1>Questions</h1>
-					<p>No? Let's <a href="lesson1.html">go</a></p>
-				</section>
+					<h2>Adding CPTs</h2>
+					<p>CPTs are added using the <a href="http://codex.wordpress.org/Function_Reference/register_post_type">register_post_type</a> function.</p>
+<pre><code>
+add_action( 'init', 'create_post_type' );
+  function create_post_type() {
+    register_post_type( 'testimonial',
+	  array(
+	    'labels' => array(
+	    'name' => __( 'Testimonials' ),	
+	    'singular_name' => __( 'Testimonial' )
+	  ),
+	'public' => true,
+	'has_archive' => true,
+	)
+  );
+}
+</code></pre>
 
+				</section>
+				
+				<section>
+					<h2>Different ways to create CPT</h2>
+					<p>You can add the code directly in your functions.php.</p>
+
+					<p>Plugins: Both <a href="http://wordpress.org/extend/plugins/custom-post-type-ui/">Custom Post Type UI</a> and <a href="http://wordpress.org/extend/plugins/sld-custom-content-and-taxonomies/">Stresslimit Custom Content Types</a> are very useful.</p>
+
+					<p>Handy Tool: <a href="http://themergency.com/generators/wordpress-custom-post-types/">WordPress Custom Post Type Code Generator</a>
+
+					<p><br><strong>NOTE</strong>: Once you've created your CPT you need to reset your permalinks.</p>
+				</section>
+				
+				<section>
+				<h2>CPTs in your admin</h2>
+				<img src="lib/img/CPT-testimonials.png" width="833" height="443" alt="Once added to your admin, a new area of content will appear.">
+				</section>
+				
+				<section>
+					<h2>Querying CPTs</h2>
+					<p>Display the information by using <code>WP_query</code></p>
+
+<pre><code>
+ $args = array( 'post_type' => 'testimonial', 'posts_per_page' => 10 );
+ $loop = new WP_Query( $args );
+   while ( $loop->have_posts() ) : $loop->the_post();
+   the_title();
+   the_content();
+ endwhile; 	
+</code></pre>
+				</section>
+				
+				<section>
+					<h2>CPT Templates</h2>
+					<p>WordPress theme files supports Custom Types.</p>
+
+					<ul>
+						<li>single-{posttype}.php</li>
+						<li>archive-{posttype}.php</li>
+					</ul>
+
+					<p><br>Custom templates can also be used to display your CPT.</p>
+				</section>
+				
+				
+				<section>
+					<h1>Exercise</h1>
+
+				<ul>
+					<li>Replace the quotes in your sidebars with a testimonial CPT</li>
+					<li>Display Testimonials at random on your sidebar</li>
+				</ul>
+
+				</section>
+				
+				<section>
+					<h1>Resources</h1>
+					
+					<ul>
+						<li><a href="http://codex.wordpress.org/Post_Types">Codex: Custom Types</a></li>
+						<li><a href="http://kovshenin.com/2010/custom-post-types-in-wordpress-3-0/">Custom Post Tpes</a></li>
+						<li><a href="http://yoast.com/custom-post-type-snippets/">Custom Post Type Snippets</a></li>
+					</ul>
+				</section>
+				
+				
+				
+				
 			</div>
 
 			<!-- The navigational controls UI -->
