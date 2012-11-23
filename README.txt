@@ -132,6 +132,7 @@ http://simple.wpyogi.com/
 
 LESSON 4: ADVANCED THEMING TECHNIQUES
 In this class, students will continue building on the custom theme created in Lesson 3.
+The PSD used is - Web_vs2.psd 
 
 Custom fields are not used as much as they once were, but are still worth looking at. 
 The drawbacks of using them for client work is worth mentioning as well as looking at some plugins 
@@ -147,6 +148,7 @@ http://enhanced.wpyogi.com/
 LESSON 5: TEMPLATE CUSTOMIZATION
 
 In this class, students will continue their custom theme enhancement by looking at creating custom templates.
+The PSD used is - Web_vs3.psd 
 
 The different WordPress loops can be a bit complicated for students to grasp especially if they lack PHP knowledge. 
 The Digging into WordPress article “4 Ways to Loop With WordPress” is a must read for all students wanting to 
