@@ -73,10 +73,10 @@
 
 					<p>The size of your thumbnails is set in<br> Settings > Media.</p>
 <pre><code>
-the_post_thumbnail( 'thumbnail' );     // default 150px x 150px
-the_post_thumbnail( 'medium' );        // default 300px x 300px
-the_post_thumbnail( 'large' );         // default 640px x 640px
-the_post_thumbnail( 'full' );          // original size uploaded
+the_post_thumbnail( 'thumbnail' );   // default 150px x 150px
+the_post_thumbnail( 'medium' );      // default 300px x 300px
+the_post_thumbnail( 'large' );       // default 1024px x 1024px
+the_post_thumbnail( 'full' );        // original size uploaded
 
 </code></pre>
 				</section>
@@ -133,8 +133,6 @@ the_post_thumbnail( 'full' );          // original size uploaded
 						<li>Insert the above comment at the top</li>
 						<li>Alter the template as needed</li>
 					</ol>
-
-					
 					
 				</section>
 				<section>
@@ -254,6 +252,46 @@ wp_reset_postdata();
 					<li>Display the required content in each box as per the PSD.</li>
 				</ul>
 
+				</section>
+				
+				
+				<section>
+					<h1>jQuery</h1>
+				</section>
+				
+				<section>
+					<h2>Enqueuing jQuery</h2>
+					<p>The best way to include jQuery is to enqueue it.</p>
+					
+<pre><code>wp_enqueue_script( $handle, $src, $deps, $ver, $in_footer );</code></pre>
+
+<pre><code>&lt;?php
+ function my_scripts_method() {
+	wp_enqueue_script( 'scriptaculous' );
+	wp_enqueue_script( 'jquery' );	
+ }
+ add_action( 'wp_enqueue_scripts', 'my_scripts_method' ); 
+?&gt;
+</code></pre>
+
+<p>WordPress is distributed with <a href="http://codex.wordpress.org/Function_Reference/wp_enqueue_script#Default_Scripts_Included_and_Registered_by_WordPress">default scripts already included</a>.</p>
+					
+				</section>
+				
+				<section>
+					<h1>No Conflict</h1>
+					<p>In order to use jQuery with WordPress, the noConflict Wrapper must be used.</p>
+					
+					<p>Use:</p>
+					
+<pre><code>jQuery(document).ready(function(){
+   jQuery(#somefunction) ...
+});</code></pre>
+<p>Instead of:</p>
+
+<pre><code>$(document).ready(function(){
+    $(#somefunction) ...
+});</code></pre>
 				</section>
 				
 				<section>
