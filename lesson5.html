@@ -226,7 +226,7 @@ $news = get_posts( array('numberposts' => 3, 'category' => 1) );
  if ( $news ) {
   foreach( (array) $news as $post ) {
     setup_postdata( $post ); ?&gt;
-   &lt;p&gt;&lt;a href="&lt;?php bloginfo('url'); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/p&gt;
+   &lt;p&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/p&gt;
  &lt;?php }
  }
 wp_reset_postdata();
@@ -253,6 +253,124 @@ wp_reset_postdata();
 				</ul>
 
 				</section>
+				
+				<section>
+					<h1>WP Loop Resources</h1>
+					<ul>
+						<li><a href="http://wp.tutsplus.com/tutorials/theme-development/a-beginners-guide-to-the-wordpress-loop/">Beginner’s guide to the WordPress loop</a></li>
+						<li><a href="http://digwp.com/2011/05/loops/">4 Ways to loop with WordPress</a></li>
+						<li><a href="https://gist.github.com/2023628">Comprehensive reference</a></li>
+					</ul>
+				</section>
+				
+				<section>
+				
+				
+					<h1>WordPress Hooks</h1>
+
+					<p>WordPress gives us the ability to alter or hook onto core WordPress functions without hacking core.</p>
+					
+					<p>There are two major tools that are considered hooks:<ul> 
+					<li>Filters</li><li>Actions</li></ul></p>
+				</section>
+				<section>
+					<h2>What do they do?</h2>
+					
+					<p><strong>Filters</strong> take specific data and allows you to modify it then returns the data.</p>
+					<p><strong>Actions</strong> allow you to run a function at a specific point in the flow of the code.</p>
+										
+				</section>
+				
+				<section>
+					<h2>How Filters Work</h2>
+					<p>Simple example of data.</p>
+					<pre><code>
+$taco = 'chicken'; 					
+					</code></pre>
+					<p>The taco is chicken.</p>
+					<pre><code>
+$taco = apply_filters( 'get_taco', 'chicken' );
+					
+function my_special_order( $content ) {
+    return 'shredded beef';
+} 					
+add_filter( 'get_taco', 'my_special_order' );
+
+					</code></pre>
+					<p>Taco is now shredded beef.</p>					
+				</section>
+				
+				<section>
+					<h2>Working Example</h2>
+					<p>Change the number of characters in a WordPress excerpt.</p>
+					<p><em>By default the excerpt length is set to return 55 words.</em></p>
+					
+					<pre><code>
+function custom_excerpt_length( $length ) {
+	return 20;
+}
+add_filter( 'excerpt_length', 'custom_excerpt_length' );
+					</code></pre>
+					
+					<p><a href="http://codex.wordpress.org/Plugin_API/Filter_Reference/excerpt_length">Plugin API/Filter Reference/excerpt length</a></p>
+				
+				</section>
+				
+				<section>
+					<h2>How Actions Work</h2>
+					<p>In your header.php file you see this function.</p>
+					<pre><code>
+&lt;?php wp_head(); ?&gt;
+					</code></pre>
+					<p>Load a custom script in the head</p>
+					<pre><code>
+add_action('wp_head', 'custom_theme_favicon');
+
+function custom_theme_favicon() {
+	echo '&lt;link rel="icon" type="image/png" href="path/to/favicon/file"&gt;';
+}
+					
+					</code></pre>
+					
+					<p>This will load a favicon in the header.</p>
+				</section>
+				
+				<section>
+					<h2>Filter and Action priority</h2>
+					<p>Filters and actions can have multiple <br />functions applied to them.</p>
+
+					<pre><code>
+function custom_excerpt_length_long( $length ) {
+	return 40;
+}
+
+function custom_excerpt_length_short( $length ) {
+	return 20;
+}
+//both filters will be applied.
+// this filter will be applied first.
+add_filter( 'excerpt_length', 'custom_excerpt_length_long' );
+// this filter will be applied last. 
+add_filter( 'excerpt_length', 'custom_excerpt_length_short', 100 );
+					</code></pre>
+					<p>What will the excerpt length be?</p>
+				</section>
+				
+				<section>
+					<h2>More Resources</h2>
+					
+					<ul>
+						<li><a href="http://wp.tutsplus.com/tutorials/the-beginners-guide-to-wordpress-actions-and-filters/">The Beginner’s Guide to WordPress Actions and Filters</a></li>
+						<li><a href="http://wp.smashingmagazine.com/2012/02/16/inside-wordpress-actions-filters/">Inside WordPress Actions and Filters</a></li>
+						<li><a href="http://ottopress.com/2011/actions-and-filters-are-not-the-same-thing/">Actions and filters are NOT the same thing...</a></li>
+						<li><a href="http://codex.wordpress.org/Plugin_API/Filter_Reference">WordPress Filter Reference</a></li>
+						<li><a href="http://codex.wordpress.org/Plugin_API/Action_Reference">WordPress Action Reference</a></li>
+						<li><a href="http://fotd.werdswords.com/">Filters of the Day</a></li>
+						
+					</ul>
+					
+				</section>			
+				
 				
 				
 				<section>
@@ -294,14 +412,7 @@ wp_reset_postdata();
 });</code></pre>
 				</section>
 				
-				<section>
-					<h1>WP Loop Resources</h1>
-					<ul>
-						<li><a href="http://wp.tutsplus.com/tutorials/theme-development/a-beginners-guide-to-the-wordpress-loop/">Beginner’s guide to the WordPress joop</a></li>
-						<li><a href="http://digwp.com/2011/05/loops/">4 Ways to loop with WordPress</a></li>
-						<li><a href="https://gist.github.com/2023628">Comprehensive reference</a></li>
-					</ul>
-				</section>
+				
 				
 				<section>
 					<h1>Questions</h1>
