@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>WordPress Lesson 4: Advanced Techniques</title>
+		<title>WordPress Lesson 4: Theming Techniques</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -29,7 +29,7 @@
 			<div class="slides">
 				<section>
 					<h1>WordPress</h1>
-					<h2>Advanced Theming Techniques</h2>
+					<h2>Theming Techniques</h2>
 					<script>
 						// Delicously hacky. Look away.
 						if( navigator.userAgent.match( /(iPhone|iPad|iPod|Android)/i ) ) document.write( '<p style="color: rgba(0,0,0,0.3); text-shadow: none;">('+'Tap to navigate'+')</p>' );
@@ -44,7 +44,8 @@
 							<li>Post thumbnails (feature images)</li>
 							<li>Custom templates</li>
 							<li>Mastering the loop</li>
-							<li>Custom post types</li>	
+							<li>Custom post types & taxonomies</li>
+							<li>Filters & hooks</li>
 						</ol>
 				</section>
 				
@@ -109,9 +110,7 @@
 					<p>Each custom field is extra information known as meta-data and is composed of a key and a value.</p>
 
 <pre><code>
-&lt;?php 
-	$meta_values = get_post_meta($post_id, $key, $single); 
-?&gt;
+&lt;?php $meta_values = get_post_meta($post_id, $key, $single); ?&gt;
 
 </code></pre>
 				</section>
@@ -139,6 +138,59 @@
 						<li>Update your page.php template.</li>
 						<li>Style the outputted html to match the design in the PSD.</li>
 					</ol>
+				</section>
+				
+				<section>
+					<h1>Data Validation</h1>
+
+					<blockquote>Untrusted data comes from many sources (users, third party sites, your own database!, …) and all of it needs to be validated both on input and output.</blockquote>
+					
+				</section>				
+				
+				<section>
+					<h1>Data Output</h1>
+
+					<p>The following special characters can break mark up if output into HTML improperly:</p> 
+					<ul>
+					<li>single and double quotes (&quot;)</li> 
+					<li>ampersands (&amp;)</li>
+					<li>greater-than and less-than signs (&lt;, &gt;) </li>
+					</ul>
+					<p>Converting them so they can't be rendered as code is called output sanitation or escaping.</p>
+					
+				</section>	
+
+				<section>
+					<h1>Data Input</h1>
+
+					<p>Ensure that all data your users are entering into the database is intended.</p> 
+					
+					<p>WordPress provides many functions to ensure data being outputted and inputted is valid and in the proper format<br> (eg: is an email valid).
+						<p><a href="http://codex.wordpress.org/Data_Validation" target="_blank">WordPress codex on data validation</a></p>
+						<p><a href="http://wp.tutsplus.com/tutorials/creative-coding/data-sanitization-and-validation-with-wordpress/">More reading on data validation</a></p>
+						
+					</p>
+					
+				</section>
+				<section>
+					<h1>Example</h1>
+<p>Escaping urls</p>
+<pre><code>
+// this is bad
+&lt;a href="&lt;?php echo $random_url; ?&gt;"&gt;A Link&lt;/a&gt;
+
+//this is good
+&lt;a href="&lt;?php echo esc_url($random_url); ?&gt;"&gt;A Better Link&lt;/a&gt;
+	</code></pre>
+	<p>Escaping attributes</p>
+<pre><code>
+// this is bad
+&lt;p class="&lt;?php echo $random_meta; ?&gt;"&gt;Text&lt;/p&gt;
+
+//this is good
+&lt;p class="&lt;?php echo esc_attr($random_meta); ?&gt;"&gt;Text&lt;/p&gt;
+	</code></pre>
+
 				</section>
 
 				<section>
