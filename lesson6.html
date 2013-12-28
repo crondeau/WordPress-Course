@@ -4,7 +4,7 @@
 	<head>
 		<meta charset="utf-8">
 		
-		<title>WordPress Lesson 6: Custom Post Types</title>
+		<title>WordPress Lesson 6: Custom Post Types and Taxonomies</title>
 
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -28,7 +28,7 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>Custom Posts Type</h1>
+					<h1>Custom Posts Type & Taxonomies</h1>
 					<h2>More CMS Goodness</h2>
 					<script>
 						// Delicously hacky. Look away.
@@ -134,10 +134,114 @@ add_action( 'init', 'create_post_type' );
 						<li><a href="http://yoast.com/custom-post-type-snippets/">Custom post type snippets</a></li>
 					</ul>
 				</section>
+				<!-- Flynn Sections --> 
+					
+
+				<section>
+					<h2>Custom Taxonomies</h2>
+
+					<p>Categories and Tags are examples of Taxonomies in WordPress. You have the ability to create your own.</p>
+					<pre><code>
+add_action( 'init', 'create_custom_tax' );
+					
+function create_custom_tax() {
+	$args = array(
+		'label' => __( 'Genre' ),
+		//hierarchical true is like categories
+		'hierarchical' => true,
+	);
+	
+	register_taxonomy( 'genre', 'post', $args);
+}  
+					</code></pre>					
+					
+					<p>This will create a custom taxonomy for posts called "Genre".</p>
+
+					<p><a href="http://codex.wordpress.org/Function_Reference/register_taxonomy">WordPress Codex on taxonomies</a></p>
+					
+				</section>
+
+				<section>
+					<h2>Taxonomy Templates</h2>
+					<p>WordPress theme files supports Taxonomies.</p>
+
+					<ul>
+						<li>taxonomy.php</li>
+						<li>taxonomy-{taxonomy}.php</li>
+						<li>archive-{taxonomy}-{term}.php</li>
+					</ul>
+
+					<p>Following our previous example our files would be called: </p>
+					<ul>
+						<li>taxonomy-genre.php</li>
+						<li>taxonomy-genre-fantasy.php</li>
+					</ul>
+				</section>
+
+				<section>
+
+					<h2>Using Taxonomies</h2>
+					<p>Getting taxonomy terms in your templates using <a href="http://codex.wordpress.org/Function_Reference/get_terms">get_terms</a>: </p>
+					<pre><code>get_terms( $taxonomies, $args )</code></pre>					
+					
+					<p>Getting taxonomy terms associated with a post using <a href="http://codex.wordpress.org/Function_Reference/get_the_terms">get_the_terms</a>: </p>
+					<pre><code>get_the_terms( $id, $taxonomy )</code></pre>					
+					
+				</section>	
+
+				<section>
+
+					<h2>get_terms example</h2>
+					<p>Listing all the terms in our Genre taxonomy.</p>
+					<pre><code> 
+$terms = get_terms("genre"); 
+if ( $terms && ! is_wp_error($terms) ){
+
+	echo "&lt;ul&gt;";
+	foreach ( $terms as $term ) {
+		echo '&lt;li&gt;&lt;a href="'
+		. get_term_link( $term->slug, $term->taxonomy ) 
+		. '"&gt;' .$term->name. "&lt;/a&gt;&lt;/li&gt;'; 	
+	}
+	echo "&lt;/ul&gt;";
+})
+					 </code></pre>					
+										
+				</section>
+
+				<section>
+
+					<h2>get_the_terms example</h2>
+					<p>Listing all the terms in our Genre taxonomy related to an individual post.</p>
+					<pre><code> 
+$terms = get_the_terms($post->ID, "genre"); 
+if ( $terms && ! is_wp_error($terms) ){
+
+	echo "&lt;ul&gt;";
+	foreach ( $terms as $term ) {
+		echo '&lt;li&gt;&lt;a href="'
+		. get_term_link( $term->slug, $term->taxonomy ) 
+		. '"&gt;' .$term->name. "&lt;/a&gt;&lt;/li&gt;'; 	
+	}
+	echo "&lt;/ul&gt;";
+})
+					 </code></pre>					
+										
+				</section>
 				
+				<section>
 				
+				<h1>Exercise</h1>				
+				<ul>
 				
+					<li>Add custom taxonomy.</li>
+					<li>Create several terms and apply them to posts.</li>
+					<li>Create a page template and add a list of the terms below the content.</li>
+					
+				</ul>
+				</section>
 				
+
 			</div>
 
 			<!-- The navigational controls UI -->
