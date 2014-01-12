@@ -45,6 +45,7 @@
 							<li>Custom templates</li>
 							<li>Mastering the loop</li>
 							<li>Filters & hooks</li>
+							<li>Enqueueing scripts and styles</li>
 							<li>Custom post types & taxonomies</li>					
 						</ol>
 				</section>
@@ -131,14 +132,7 @@
 </code></pre>
 				</section>
 
-				<section>
-					<h1>Exercise</h1>
-					<ol>
-						<li>Insert custom fields on your pages.</li>
-						<li>Update your page.php template.</li>
-						<li>Style the outputted html to match the design in the PSD.</li>
-					</ol>
-				</section>
+				
 				
 				<section>
 					<h1>Data Validation</h1>
@@ -192,6 +186,88 @@
 	</code></pre>
 
 				</section>
+				
+				<section>
+					<h1>Exercise</h1>
+					<ol>
+						<li>Insert custom fields on your pages.</li>
+						<li>Update your page.php template.</li>
+						<li>Style the outputted html to match the design in the PSD.</li>
+					</ol>
+				</section>
+				
+				<section>
+					<h1>Post Thumbnails</h1>
+				</section>
+
+				<section>
+					<h2>Post Thumbnail</h2>
+					<p>Custom fields were used to display featured images, but WordPress version 2.9 introduced <a href="http://codex.wordpress.org/Post_Thumbnails">Post Thumbnails</a> and made this process redundant. <code>The post-thumbnail()</code> function is the method of choice for displaying featured images.</p>
+
+<pre><code>
+	add_theme_support( 'post-thumbnails' );
+	
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Using Post Thumbnails</h2>
+					<p>Once you've declared theme support for this feature, a new "Featured Image" area will appear in the bottom right hand side of your post and page admin UI.</p>
+
+					<p>To add a featured image, simply click the link, add a new image like you would any other image and select "Use as featured image" instead of insert into post.</p>
+				</section>
+				
+				<section>
+					<h2>Displaying Post Thumbnails</h2>
+
+					<p>Once added to your post or page, you can display it by adding the following code within the loop.</p>
+
+<pre><code>
+	&lt;?php the_post_thumbnail(); ?&gt;
+	
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Post Thumbnails Sizes</h2>
+
+					<p>The size of your thumbnails is set in<br> Settings > Media.</p>
+<pre><code>
+the_post_thumbnail( 'thumbnail' );   // default 150px x 150px
+the_post_thumbnail( 'medium' );      // default 300px x 300px
+the_post_thumbnail( 'large' );       // default 1024px x 1024px
+the_post_thumbnail( 'full' );        // original size uploaded
+
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Additional Sizes</h2>
+
+					<p>You may want to add more sizes to suit your design.</p>
+
+<pre><code>
+	add_image_size( 'single-post-thumbnail', 350, 9999 );
+	add_image_size( 'homepage-thumb', 220, 180, true ); 
+	
+</code></pre>
+					<p>You can then use these new sizes like so:</p>
+<pre><code>
+&lt;?php 
+	the_post_thumbnail( 'single-post-thumbnail' ); 
+	
+?&gt;</code></pre>
+				</section>
+				
+				<section>
+					<h1>Exercise</h1>
+					<ol>
+						<li>Insert featured images in your blog posts.</li>
+						<li>Update your index.php, archives.php and single.php templates.</li>
+						<li>Style the outputted html to match the design in the PSD.</li>
+					</ol>
+				</section>
+				
 
 				<section>
 					<h1>Body Class Resources</h1>
@@ -210,6 +286,15 @@
 					<li><a href="http://www.wpbeginner.com/wp-tutorials/wordpress-custom-fields-101-tips-tricks-and-hacks/">Custom fields tips and tricks</a></li>
 					<li><a href="http://sixrevisions.com/wordpress/custom-fields-search/">Enhancing WordPress custom fields</a></li>
 					</ul>
+				</section>
+				
+				<section>
+					<h1>Post Thumbnails Resources</h1>
+					<ul>
+						<li><a href="http://markjaquith.wordpress.com/2009/12/23/new-in-wordpress-2-9-post-thumbnail-images/">New in WordPress 2.9: Post Thumbnail Images</a></li>
+						<li><a href="http://justintadlock.com/archives/2009/11/16/everything-you-need-to-know-about-wordpress-2-9s-post-image-feature">Everything you need to know about WordPress 2.9′s post image feature</a></li>
+						<li><a href="http://justintadlock.com/archives/2012/07/05/how-to-define-a-default-post-thumbnail">How to define a default post thumbnail</a></li>
+					
 				</section>
 				
 				
