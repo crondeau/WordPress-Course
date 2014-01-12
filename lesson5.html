@@ -36,77 +36,7 @@
 					</script>
 				</section>
 				
-				<section>
-					<h1>Post Thumbnails</h1>
-				</section>
-
-				<section>
-					<h2>Post Thumbnail</h2>
-					<p>Custom fields were used to display featured images, but WordPress version 2.9 introduced <a href="http://codex.wordpress.org/Post_Thumbnails">Post Thumbnails</a> and made this process redundant. <code>The post-thumbnail()</code> function is the method of choice for displaying featured images.</p>
-
-<pre><code>
-	add_theme_support( 'post-thumbnails' );
-	
-</code></pre>
-				</section>
-
-				<section>
-					<h2>Using Post Thumbnails</h2>
-					<p>Once you've declared theme support for this feature, a new "Featured Image" area will appear in the bottom right hand side of your post and page admin UI.</p>
-
-					<p>To add a featured image, simply click the link, add a new image like you would any other image and select "Use as featured image" instead of insert into post.</p>
-				</section>
 				
-				<section>
-					<h2>Displaying Post Thumbnails</h2>
-
-					<p>Once added to your post or page, you can display it by adding the following code within the loop.</p>
-
-<pre><code>
-	&lt;?php the_post_thumbnail(); ?&gt;
-	
-</code></pre>
-				</section>
-
-				<section>
-					<h2>Post Thumbnails Sizes</h2>
-
-					<p>The size of your thumbnails is set in<br> Settings > Media.</p>
-<pre><code>
-the_post_thumbnail( 'thumbnail' );   // default 150px x 150px
-the_post_thumbnail( 'medium' );      // default 300px x 300px
-the_post_thumbnail( 'large' );       // default 1024px x 1024px
-the_post_thumbnail( 'full' );        // original size uploaded
-
-</code></pre>
-				</section>
-
-				<section>
-					<h2>Additional Sizes</h2>
-
-					<p>You may want to add more sizes to suit your design.</p>
-
-<pre><code>
-	add_image_size( 'single-post-thumbnail', 350, 9999 );
-	add_image_size( 'homepage-thumb', 220, 180, true ); 
-	
-</code></pre>
-					<p>You can then use these new sizes like so:</p>
-<pre><code>
-&lt;?php 
-	the_post_thumbnail( 'single-post-thumbnail' ); 
-	
-?&gt;</code></pre>
-				</section>
-				
-				<section>
-					<h1>Exercise</h1>
-					<ol>
-						<li>Insert featured images in your blog posts.</li>
-						<li>Update your index.php, archives.php and single.php templates.</li>
-						<li>Style the outputted html to match the design in the PSD.</li>
-					</ol>
-				</section>
 				
 				<section>
 					<h1>Custom Templates</h1>
@@ -226,11 +156,10 @@ $news = get_posts( array('numberposts' => 3, 'category' => 1) );
  if ( $news ) {
   foreach( (array) $news as $post ) {
     setup_postdata( $post ); ?&gt;
-   &lt;p&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/p&gt;
+  &lt;p&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/p&gt;
  &lt;?php }
  }
-wp_reset_postdata();
-?&gt;
+wp_reset_postdata();?&gt;
 
 </code></pre>
 					
@@ -254,14 +183,7 @@ wp_reset_postdata();
 
 				</section>
 				
-				<section>
-					<h1>WP Loop Resources</h1>
-					<ul>
-						<li><a href="http://wp.tutsplus.com/tutorials/theme-development/a-beginners-guide-to-the-wordpress-loop/">Beginner’s guide to the WordPress loop</a></li>
-						<li><a href="http://digwp.com/2011/05/loops/">4 Ways to loop with WordPress</a></li>
-						<li><a href="https://gist.github.com/2023628">Comprehensive reference</a></li>
-					</ul>
-				</section>
+				
 				
 				<section>
 				
@@ -357,7 +279,16 @@ add_filter( 'excerpt_length', 'custom_excerpt_length_short', 100 );
 				</section>
 				
 				<section>
-					<h2>More Resources</h2>
+					<h1>WP Loop Resources</h1>
+					<ul>
+						<li><a href="http://wp.tutsplus.com/tutorials/theme-development/a-beginners-guide-to-the-wordpress-loop/">Beginner’s guide to the WordPress loop</a></li>
+						<li><a href="http://digwp.com/2011/05/loops/">4 Ways to loop with WordPress</a></li>
+						<li><a href="https://gist.github.com/2023628">Comprehensive reference</a></li>
+					</ul>
+				</section>
+				
+				<section>
+					<h2>Filters and Actions Resources</h2>
 					
 					<ul>
 						<li><a href="http://wp.tutsplus.com/tutorials/the-beginners-guide-to-wordpress-actions-and-filters/">The Beginner’s Guide to WordPress Actions and Filters</a></li>
