@@ -124,18 +124,7 @@ add_action( 'init', 'create_post_type' );
 				</ul>
 
 				</section>
-				
-				<section>
-					<h1>Resources</h1>
-					
-					<ul>
-						<li><a href="http://codex.wordpress.org/Post_Types">Codex: custom types</a></li>
-						<li><a href="http://kovshenin.com/2010/custom-post-types-in-wordpress-3-0/">Custom post types</a></li>
-						<li><a href="http://yoast.com/custom-post-type-snippets/">Custom post type snippets</a></li>
-					</ul>
-				</section>
-				<!-- Flynn Sections --> 
-					
+
 
 				<section>
 					<h2>Custom Taxonomies</h2>
@@ -182,10 +171,16 @@ function create_custom_tax() {
 
 					<h2>Using Taxonomies</h2>
 					<p>Getting taxonomy terms in your templates using <a href="http://codex.wordpress.org/Function_Reference/get_terms">get_terms</a>: </p>
-					<pre><code>get_terms( $taxonomies, $args )</code></pre>					
+					<pre><code>
+ get_terms( $taxonomies, $args )
+
+</code></pre>					
 					
 					<p>Getting taxonomy terms associated with a post using <a href="http://codex.wordpress.org/Function_Reference/get_the_terms">get_the_terms</a>: </p>
-					<pre><code>get_the_terms( $id, $taxonomy )</code></pre>					
+					<pre><code>
+get_the_terms( $id, $taxonomy )
+
+</code></pre>					
 					
 				</section>	
 
@@ -239,6 +234,16 @@ if ( $terms && ! is_wp_error($terms) ){
 					<li>Create a page template and add a list of the terms below the content.</li>
 					
 				</ul>
+				</section>
+				
+				<section>
+					<h1>CPT Resources</h1>
+					
+					<ul>
+						<li><a href="http://codex.wordpress.org/Post_Types">Codex: custom types</a></li>
+						<li><a href="http://kovshenin.com/2010/custom-post-types-in-wordpress-3-0/">Custom post types</a></li>
+						<li><a href="http://yoast.com/custom-post-type-snippets/">Custom post type snippets</a></li>
+					</ul>
 				</section>
 				
 
