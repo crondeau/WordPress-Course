@@ -155,16 +155,31 @@ function create_custom_tax() {
 					<p>WordPress theme files supports Taxonomies.</p>
 
 					<ul>
-						<li>taxonomy.php</li>
+						<li>taxonomy-{taxonomy}-{term}.php</li>
 						<li>taxonomy-{taxonomy}.php</li>
-						<li>archive-{taxonomy}-{term}.php</li>
+						<li>taxonomy.php</li>
 					</ul>
 
-					<p>Following our previous example our files would be called: </p>
-					<ul>
-						<li>taxonomy-genre.php</li>
+					<p><br>Following our previous example our files would be called: </p>
+					<ul>						
 						<li>taxonomy-genre-fantasy.php</li>
+						<li>taxonomy-genre.php</li>
 					</ul>
+				</section>
+				
+				<section>
+					<h2>Taxonomy Template Hierarchy</h2>
+					<p>WordPress looks for the taxonomy template in this order:</p>
+
+					<ul>
+						<li>taxonomy-{taxonomy}-{term}.php</li>
+						<li>taxonomy-{taxonomy}.php</li>
+						<li>taxonomy.php</li>
+						<li>archive.php</li>
+						<li>index.php</li>
+					</ul>
+
+
 				</section>
 
 				<section>
@@ -237,13 +252,22 @@ if ( $terms && ! is_wp_error($terms) ){
 				</section>
 				
 				<section>
-					<h1>CPT Resources</h1>
+					<h2>CPT Resources</h2>
 					
 					<ul>
 						<li><a href="http://codex.wordpress.org/Post_Types">Codex: custom types</a></li>
 						<li><a href="http://kovshenin.com/2010/custom-post-types-in-wordpress-3-0/">Custom post types</a></li>
 						<li><a href="http://yoast.com/custom-post-type-snippets/">Custom post type snippets</a></li>
 					</ul>
+				</section>
+				
+				<section>
+					<h2>Taxonomy Resources</h2>
+					<ul>
+						<li><a href="http://wp.smashingmagazine.com/2012/01/04/create-custom-taxonomies-wordpress/">How To Create Custom Taxonomies In WordPress</a></li>
+						<li><a href="http://justintadlock.com/archives/2009/06/04/using-custom-taxonomies-to-create-a-movie-database">Using custom taxonomies to create a movie database</a></li>
+					</ul>
+					
 				</section>
 				
 
