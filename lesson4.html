@@ -110,10 +110,20 @@
 					<p>Historically, <a href="http://codex.wordpress.org/Custom_Fields">custom fields</a> have been around the longest. These are useful in some very simple instances.</p>
 					<p>Each custom field is extra information known as meta-data and is composed of a key and a value.</p>
 
+
+				</section>
+				
+				<section>
+					<h2>get_post_meta()</h2>
+					<p>This function returns the values of the custom fields with the specified key from the specified post.</p>
+					
 <pre><code>
-&lt;?php $meta_values = get_post_meta($post_id, $key, $single); ?&gt;
+  &lt;?php $meta_values = get_post_meta( $post_id, $key ); ?&gt;
 
 </code></pre>
+
+<p><strong>$post_id</strong> - The ID of the post from which you want the data. 
+<p><strong>$key</strong> - A string containing the name of the meta value you want.</p>
 				</section>
 
 				<section>
@@ -137,7 +147,7 @@
 				<section>
 					<h1>Data Validation</h1>
 
-					<blockquote>Untrusted data comes from many sources (users, third party sites, your own database!, …) and all of it needs to be validated both on input and output.</blockquote>
+					<p>Untrusted data comes from many sources (users, third party sites, your own database!, …) and all of it needs to be validated both on input and output.</p>
 					
 				</section>				
 				
@@ -191,13 +201,14 @@
 					<h1>Exercise</h1>
 					<ol>
 						<li>Insert custom fields on your pages.</li>
-						<li>Update your page.php template.</li>
-						<li>Style the outputted html to match the design in the PSD.</li>
+						<li>Update your page.php template to display testimonials in the sidebar.</li>
+						<li>Style the outputted HTML to match the design in the PSD.</li>
 					</ol>
 				</section>
 				
 				<section>
 					<h1>Post Thumbnails</h1>
+					<h2>(featured images)</h2>
 				</section>
 
 				<section>
@@ -228,16 +239,7 @@
 </code></pre>
 				</section>
 				
-				<section>
-					<h2>Give thumbnails their own class</h2>
-					
-					<p>Display the Post Thumbnail with a class "alignleft"</p>
-
-<pre><code> 
-  the_post_thumbnail('thumbnail', array('class' => 'alignleft')); 
-  
-</code></pre>
-				</section>
+				
 
 				<section>
 					<h2>Post Thumbnails Sizes</h2>
@@ -271,10 +273,23 @@ the_post_thumbnail( 'full' );        // original size uploaded
 				</section>
 				
 				<section>
+					<h2>Give thumbnails their own class</h2>
+					
+					<p>Display the Post Thumbnail with a class "alignleft"</p>
+
+<pre><code> 
+  the_post_thumbnail( 'thumbnail', array('class' => 'alignleft') ); 
+  
+  the_post_thumbnail( 'portofolio-img', array('class' => 'fancy') ); 
+  
+</code></pre>
+				</section>
+				
+				<section>
 					<h1>Exercise</h1>
 					<ol>
 						<li>Insert featured images in your blog posts.</li>
-						<li>Update your index.php, archives.php and single.php templates.</li>
+						<li>Update your templates to display small images on your blog and archive, but larger ones on your single posts.</li>
 						<li>Style the outputted html to match the design in the PSD.</li>
 					</ol>
 				</section>
