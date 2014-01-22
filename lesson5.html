@@ -39,7 +39,40 @@
 				
 				
 				<section>
-					<h1>Custom Templates</h1>
+					<h1>More Templates</h1>
+				</section>
+				
+				<section>
+					<h2>Front Page</h2>
+					<p>To achieve a unique look for your homepage,<br> you can create a file called <code>front-page.php</code>.</p> 
+					</p>
+
+					<p>This template is used when we want to create a unique looking home page with a series of content areas funneling visitors to various sections of our site.</p>
+				</section>
+				
+				<section>
+					<h2>Page Templates</h2>
+					<p>You can target specific pages, by making new templates and using the slug or the id of the page.</p>
+					
+					
+					<ul><code>
+						<li>page-id.php</li>
+						<li>page-slug.php</li> 		
+					</code></ul>
+					
+	
+					<p>This is good practice if you are going to use a unique feature only once. </p>
+						For example, you may want to use a <code>page-contact.php</code> to display a google map.</p>
+				</section>
+				
+				<section>
+					<h2>Category templates</h2>
+					<p>You may also want to create unique layout for a specific category.</p>
+					<ul><code>
+						<li>category-id.php</li>
+						<li>category-slug.php</li>		
+					</code></ul>
+					<p><br>WordPress offers a huge selection of templates and these follow <a href="http://codex.wordpress.org/Template_Hierarchy#The_Template_Hierarchy_In_Detail">a specific hierarchy</a>.</p>
 				</section>
 				
 				
@@ -49,22 +82,16 @@
 					<p>Custom templates can be created by adding a comment at the top of a new file.</p>
 
 <pre><code>
-&lt;?php	
-	/* Template Name: Full Width Page */
-?&gt;
+&lt;?php /* Template Name: The name of your template goes here */ ?&gt;
 	
 </code></pre>
 
-	<p>Example:
+<p>Custom templates are used when you want to let clients decide what template to use. For example, you may wish to provide a page.php which has a sidebar and a custom template with no sidebar.</p>
 
-					<ol>
-						<li>Make a duplicate of page.php</li>
-						<li>Save this new file as full-wdith.php</li>
-						<li>Insert the above comment at the top</li>
-						<li>Alter the template as needed</li>
-					</ol>
 					
 				</section>
+	
+				
 				<section>
 					<h2>Using Custom Templates</h2>
 					<p>Once you've created your custom template and saved it, you will notice a dropdown in your page admin.</p>
@@ -74,38 +101,47 @@
 				</section>
 				
 				<section>
-					<h2>Home Page</h2>
-					<p>To achieve a unique look for your homepage,<br> you can create a file called front-page.php.</p> 
-					</p>
+					<h2>Exercise</h2>
+					<ul>
+						<li>Set up a front page template and insert different divs for the banner and two columns</li>
+						<li>Set up unique contact page</li>
+						<li>Set up a custom template with no sidebar</li>
+						<li>Set up a category template for one of your categories</li>					
+					</ul>
+					
+				</section>
 
-					<p>The comment at the top is <strong>NOT</strong> needed.</p>
-				</section>
-				
-				<section>
-					<h2>Unique page and category display</h2>
-					<p>You may also want to create unique layouts for either single pages or categories.</p>
-					<ul><code>
-						<li>page-id.php</li>
-						<li>single-id.php</li> 
-						<li>category-id.php</li>
-						<li>...</li>		
-					</code></ul>
-					<p>WordPress offers a huge selection of templates and these follow <a href="http://codex.wordpress.org/Template_Hierarchy#The_Template_Hierarchy_In_Detail">a specific hierarchy</a>.</p>
-				</section>
 				
 				<section>
 					<h1>The Loop</h1>
 				</section>
+				
+				<section>
+					<h2>The Loop</h2>
+					<p>The Loop is PHP code used by WordPress to display posts.</p>
+					<p>You loop displays information using the appropriate Template Tags.</p>
+					<p>Examples of template tags are:</p>
+					<ul>
+						<li>Title - <code>the_title();</code></li>
+						<li>Content - <code>the_content();</code></li>
+						<li>Excerpt - <code>the_excerpt();</code></li>
+						<li>Link - <code>the_permalink(); </code></li>
+					</ul>
+					
+				</section>
+				
+				
 				<section>
 					<h2>Default Loop</h2>
 					<p>This loop uses the <em>the default query</em> to loop through post content, making it the loop used 99% of the time.</p>
 <pre><code>
- &lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
-  &lt;div &lt;?php post_class(); ?> id="post-&lt;?php the_ID(); ?&gt;"&gt;
-	&lt;h1&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;&lt;/a&gt;&lt;/h1&gt;
-	&lt;?php the_content(); ?&gt;	
+&lt;?php if (have_posts()) : while (have_posts()) : the_post(); ?&gt;
+ &lt;div &lt;?php post_class(); ?> id="post-&lt;?php the_ID(); ?&gt;"&gt;
+   &lt;h2&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;
+   &lt;/a&gt;&lt;/h2&gt;
+    &lt;?php the_content(); ?&gt;	
   &lt;/div&gt;
- &lt;?php endwhile; ?&gt;
+&lt;?php endwhile; endif; ?&gt;
 
 </code></pre>
 				</section>
@@ -115,14 +151,14 @@
 					
 					<p><a href="http://codex.wordpress.org/Function_Reference/WP_Query">WP Query</a> offers you complete control over the customization of any number of loop.</p>
 
-					<p>The following loop will exclude a category.</p>
+					<p>The following loop will exclude category 9.</p>
 
 <pre><code>
  &lt;?php $custom_query = new WP_Query('cat=-9'); 
   while($custom_query-&gt;have_posts()) : $custom_query-&gt;the_post(); ?&gt; 
    &lt;div &lt;?php post_class(); ?&gt; id="post-&lt;?php the_ID(); ?&gt;"&gt; 
-    &lt;h1&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;
-    &lt;/a&gt;&lt;/h1&gt; 
+    &lt;h2&gt;&lt;a href="&lt;?php the_permalink(); ?&gt;"&gt;&lt;?php the_title(); ?&gt;
+    &lt;/a&gt;&lt;/h2&gt; 
     &lt;?php the_content(); ?&gt; 
    &lt;/div&gt; 
   &lt;?php endwhile; ?&gt; 
@@ -176,9 +212,9 @@ wp_reset_postdata();?&gt;
 					<h1>Exercise</h1>
 
 				<ul>
-					<li>Set up your front-page.php</li>
-					<li>Using the PSD as your guide, set up the different boxes areas using CSS</li>
-					<li>Display the required content in each box as per the PSD.</li>
+					<li>Set up two subpages as children of home. </li>
+					<li>Using WP_query display the content of the subpages on your <code>front-page.php</code> in the left and right columns. Use the Photoshop file as your guide for styling.</li>
+
 				</ul>
 
 				</section>
